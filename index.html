@@ -123,7 +123,8 @@ queue()
 
 function ready(error, data, population) {
   var populationById = {};
-
+ console.log(data)
+console.log(data.features)
   data.features.forEach(function(d) { populationById[d.id] = +d.population; d.population = populationById[d.id]; });
 
   svg.append("g")
