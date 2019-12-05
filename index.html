@@ -192,11 +192,7 @@
   <!-- Header -->
   <header class="masthead">
     <div class="container d-flex h-100 align-items-center">
-      <div class="mx-auto text-center">
-        <h1 class="mx-auto my-0 text-uppercase">McDonalds Insights</h1>
-        <h2 class="text-white-50 mx-auto mt-2 mb-5">An insight into the amounts of nutrients, percentage daily intake
-          and calories
-          of different menu options at the world's most famous fast food chain.</h2>
+      <div class="mx-auto text-center" id="map">
       </div>
     </div>
   </header>
@@ -311,7 +307,7 @@ function ready(error, data, population) {
   population.forEach(function(d) { populationById[d.id] = +d.population; }); 
   data.features.forEach(function(d) { d.population = populationById[d.id]; });
 
-  svg.append("g")
+  svg.select("#map").append("g")
       .attr("class", "countries")
     .selectAll("path")
       .data(data.features)
