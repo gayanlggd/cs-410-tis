@@ -1,8 +1,88 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<style>
+<html lang="en">
 
-  .names {
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/grayscale.min.css" rel="stylesheet">
+
+  <title>McDonald's Nutrition Facts</title>
+  <<script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://d3js.org/queue.v1.min.js"></script>
+  <script src="https://d3js.org/topojson.v1.min.js"></script>
+  <script src="d3-tip.js"></script>
+  <style type="text/css">
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+    .bar {
+      fill: slategrey;
+    }
+
+    .bar1 {
+      fill: steelblue;
+    }
+
+    .bar:hover {
+      fill: grey;
+    }
+
+    .bar1:hover {
+      fill: blue;
+    }
+
+    .x.axis path {
+      display: none;
+    }
+
+    .d3-tip {
+      line-height: 1;
+      font-weight: bold;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      border-radius: 2px;
+    }
+
+    /* Creates a small triangle extender for the tooltip */
+    .d3-tip:after {
+      box-sizing: border-box;
+      display: inline;
+      font-size: 10px;
+      width: 100%;
+      line-height: 1;
+      color: rgba(0, 0, 0, 0.8);
+      content: "\25BC";
+      position: absolute;
+      text-align: center;
+    }
+
+    /* Style northward tooltips differently */
+    .d3-tip.n:after {
+      margin: -1px 0 0 0;
+      top: 100%;
+      left: 0;
+    }
+
+    .names {
   fill: none;
   stroke: #fff;
   stroke-linejoin: round;
@@ -75,14 +155,216 @@
       color:white;
     }
 
-</style>
-<body>
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="https://d3js.org/queue.v1.min.js"></script>
-<script src="https://d3js.org/topojson.v1.min.js"></script>
-<script src="d3-tip.js"></script>
-<script>
-var format = d3.format(",");
+  </style>
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#introduction">Introduction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#overview">Overview</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" id="breakdownSection" href="#breakdown">Breakdown</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#signup">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="masthead">
+    <div class="container d-flex h-100 align-items-center">
+      <div class="mx-auto text-center">
+        <h1 class="mx-auto my-0 text-uppercase">McDonalds Insights</h1>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5">An insight into the amounts of nutrients, percentage daily intake
+          and calories
+          of different menu options at the world's most famous fast food chain.</h2>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section id="introduction" class="about-section text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2 class="text-white mb-4">Introduction</h2>
+          <p class="text-white-50 text-lg-left">McDonalds is argubly the world's most famous restaurant chain and the
+            fast food chain.
+            According to Wikipedia, McDonald's is the world's largest restaurant chain by revenue, serving over 69
+            million
+            customers daily in over 100 countries across 37,855 outlets as of 2018.
+            But what exactly McDonalds is selling to its customers ?, is it healthy ?, does it surpass the recommended
+            daily intake
+            of calories and different nutrients? These questions have been popular among the general public for the last
+            couple of decades
+            in an era where people are fact finding about obesity and remedies. Furthermore the daily recommended
+            caloric consumptio for a male is
+            2200 calories and for a female is 2000 calories. Hence it also provides an opportunity to compare each food
+            item with the aforesaid numbers.
+            <br />
+            <br />
+            This visualization study looks to highlight a few important facts and answer a few important questions about
+            the McDonalds menu items in USA.
+            <br />
+            <br />
+            1) What would be a better comparison between the caloric values of different menu items at McDonalds ?<br />
+            2) What are the nutrients that each menu item consists of ?<br />
+            3) What is the percentage of daily recommended intake of each selected menu item ?
+            <br />
+            <br />
+            <br />
+            <strong>Dataset</strong>
+            <br />
+            The dataset used for this analysis can be found in <a target="_"
+              href="https://www.kaggle.com/mcdonalds/nutrition-facts">Kaggle</a>
+            The original dataset consists of about 260 McDonalds menu items. For simplicity of the visualization, the
+            beverages are not considered
+            for the analysis. The dataset has some valuable information such as the amount of calories of each food
+            item, the amount of nutirients of each type,
+            along with the percentage values of the daily recommended intake of each nutrient.
+          </p>
+        </div>
+      </div>
+      <!--img src="img/ipad.png" class="img-fluid" alt=""-->
+    </div>
+  </section>
+
+  <!-- Overview Section -->
+  <section id="overview" class="projects-section bg-light">
+    <div class="container">
+      <div class="bg-black text-center h-100 project">
+        <div class="d-flex h-100">
+          <div class="project-text w-100 my-auto text-center text-lg-left">
+            <h4 class="text-white">Calories of food items</h4>
+            <p class="mb-0 text-white-50">
+              Knowing the amount of calorie values helps answering many questions such as does ordered grilled chicken
+              instead of crispy increase a sandwich's nutritional value? What about ordering egg whites instead of whole
+              eggs? What is the least number of items could you order from the menu to meet one day's nutritional
+              requirements?
+            </p>
+            <br>
+            <p class="mb-0 text-white-50">
+              This is an interactive figure, tooltip on each food item shows the name of the food item and the amount of
+              calories it contains. Click the any bubble to observe detailed drilldown view of it.
+            </p>
+            <hr class="d-none d-lg-block mb-0 ml-0">
+            <p></p>
+          </div>
+        </div>
+      </div>
+      <!-- Featured Project Row -->
+      <div id="bubbleArea" class="row align-items-center no-gutters mb-4 mb-lg-5">
+      </div>
+    </div>
+  </section>
+
+  <!-- Breakdown Section -->
+  <section id="breakdown" class="projects-section bg-light">
+    <div class="container">
+      <div class="text-lg-center">
+        <strong><h4 id="selectedItem"></h4></strong>
+      </div>
+      <br />
+      <br />
+
+      <!-- Project One Row -->
+      <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+        <div class="col-lg-6">
+          <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 text-center text-lg-left">
+                <h4 class="text-white">Nutrients</h4>
+                <p class="mb-0 text-white-50">Amount of nutrients in grams of selected food item is depicted on graph
+                  the right.
+                  Often caloric values are deceiving when it is actually compared to the amount of nutrient.
+                  Even low caloric food items may have high amount of Carbohydrates, sugars and fat which are
+                  consideredto be unhealthy.</p>
+                <hr class="d-none d-lg-block mb-0 ml-0">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="gramsArea" class="col-lg-6">
+        </div>
+      </div>
+
+      <!-- Project Two Row -->
+      <div class="row justify-content-center no-gutters">
+        <div class="col-lg-6 order-lg-first">
+          <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 text-center text-lg-left">
+                <h4 class="text-white">Percentage of daily intake</h4>
+                <p class="mb-0 text-white-50">Amount of nutrients as a percentage of the daily recommended intake is
+                  depicted on the right.
+                  Percentage daily recommended intake is also an important metric of a given food items. It is adviced
+                  to maintain these values
+                  under a 100% throughout the day. Taking more than a 100% of some of the nutrients such as Cholesterol
+                  can be dangerous in the long run.
+                </p>
+                <hr class="d-none d-lg-block mb-0 mr-0">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="percentageArea" class="col-lg-6">
+          <!--img class="img-fluid" src="img/demo-image-02.jpg" alt=""-->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Signup Section -->
+  <section id="signup" class="signup-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto text-center">
+          <h2 class="text-white mb-5">
+              <strong>Gayan Liyanagamage</strong><br />
+              <strong>gayandl2@illinois.edu</strong>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black small text-center text-white-50">
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/grayscale.min.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="d3/d3-tip.js"></script>
+  <script type="text/javascript">
+    var format = d3.format(",");
 
 // Set tooltips
 var tip = d3.tip()
@@ -165,6 +447,7 @@ function ready(error, data, population) {
       .attr("d", path);
 }
 
-</script>
+  </script>
 </body>
+
 </html>
