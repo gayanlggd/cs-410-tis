@@ -192,13 +192,17 @@
   <!-- Header -->
   <header class="masthead">
     <div class="container d-flex h-100 align-items-center">
-      <div class="mx-auto text-center" id="map">
+      <div class="mx-auto text-center">
+        <h1 class="mx-auto my-0 text-uppercase">McDonalds Insights</h1>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5">An insight into the amounts of nutrients, percentage daily intake
+          and calories
+          of different menu options at the world's most famous fast food chain.</h2>
       </div>
     </div>
   </header>
 
   <!-- About Section -->
-  <!--section id="introduction" class="about-section text-center">
+  <section id="introduction" class="about-section text-center">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
@@ -240,10 +244,50 @@
           </p>
         </div>
       </div>
+      <!--img src="img/ipad.png" class="img-fluid" alt=""-->
     </div>
-  </section-->
+  </section>
 
+  <!-- Overview Section -->
+  <section id="overview" class="projects-section bg-light">
+    <div class="container">
+      <div class="bg-black text-center h-100 project">
+        <div class="d-flex h-100">
+          <div class="project-text w-100 my-auto text-center text-lg-left">
+            <h4 class="text-white">Calories of food items</h4>
+            <p class="mb-0 text-white-50">
+              Knowing the amount of calorie values helps answering many questions such as does ordered grilled chicken
+              instead of crispy increase a sandwich's nutritional value? What about ordering egg whites instead of whole
+              eggs? What is the least number of items could you order from the menu to meet one day's nutritional
+              requirements?
+            </p>
+            <br>
+            <p class="mb-0 text-white-50">
+              This is an interactive figure, tooltip on each food item shows the name of the food item and the amount of
+              calories it contains. Click the any bubble to observe detailed drilldown view of it.
+            </p>
+            <hr class="d-none d-lg-block mb-0 ml-0">
+            <p></p>
+          </div>
+        </div>
+      </div>
+      <!-- Featured Project Row -->
+      <div id="bubbleArea" class="row align-items-center no-gutters mb-4 mb-lg-5">
+      </div>
+    </div>
+  </section>
 
+  <!-- Breakdown Section -->
+  <!--section id="breakdown" class="projects-section bg-light">
+    <div class="container">
+      <div class="text-lg-center">
+        <strong><h4 id="selectedItem"></h4></strong>
+      </div>
+      <br />
+      <br />
+
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="bg-black small text-center text-white-50">
@@ -307,7 +351,7 @@ function ready(error, data, population) {
   population.forEach(function(d) { populationById[d.id] = +d.population; }); 
   data.features.forEach(function(d) { d.population = populationById[d.id]; });
 
-  svg.select("#map").append("g")
+  svg.append("g")
       .attr("class", "countries")
     .selectAll("path")
       .data(data.features)
