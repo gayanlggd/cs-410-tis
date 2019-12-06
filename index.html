@@ -322,6 +322,10 @@ function ready(error, data, population) {
   population.forEach(function(d) { populationById[d.id] = +d.population; }); 
   data.features.forEach(function(d) { d.population = populationById[d.id]; });
 
+  drawMap(data,population)
+}
+
+function drawMap(){
   svg.append("g")
       .attr("class", "countries")
     .selectAll("path")
@@ -357,6 +361,7 @@ function ready(error, data, population) {
        // .datum(topojson.mesh(data.features, function(a, b) { return a !== b; }))
       .attr("class", "names")
       .attr("d", path);
+}
 }
 
 $("#sentimentForm").submit(function(event){
