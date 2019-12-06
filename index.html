@@ -315,15 +315,12 @@ $( document ).ready(function() {
   svg.call(tip);
 
   $.getJSON( "world_countries.json", function( data ) {
-    console.log(data);
+    populationById = getSentimentData(post_url,request_method,form_data);
+    data.features.forEach(function(d) { d.population = populationById[d.id]; });
+    mapData = data;
+    drawMap(data,populationById);
   });
-  var populationById = {};
 
-  population.forEach(function(d) { populationById[d.id] = +d.population; }); 
-  data.features.forEach(function(d) { d.population = populationById[d.id]; });
-  mapData = data;
-
-  drawMap(data,populationById);
 });
 
 function drawMap(data,populationById){
@@ -370,8 +367,8 @@ $("#sentimentForm").submit(function(event){
 	var request_method = $(this).attr("method"); 
 	var form_data = $(this).serialize(); 
 	
-  getSentimentData(post_url,request_method,form_data);
-	
+  populationById = getSentimentData(post_url,request_method,form_data);
+	drawMap(mapData,populationById);
 });
 
 function getSentimentData(post_url,request_method,form_data){
@@ -385,9 +382,9 @@ function getSentimentData(post_url,request_method,form_data){
     population.forEach(function(d) { populationById[d.id] = +d.population; }); 
     console.log(mapData)
 		console.log(response);
-    drawMap(mapData,populationById);
+    //drawMap(mapData,populationById);
 	});
-  return false;
+  return populationById;
 }
 
   </script>
