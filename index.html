@@ -314,6 +314,10 @@ $( document ).ready(function() {
 
   svg.call(tip);
 
+  post_url = $("sentimentForm").attr("action");
+  request_method = $("sentimentForm").attr("method");
+  form_data = {};
+
   $.getJSON( "world_countries.json", function( data ) {
     populationById = getSentimentData(post_url,request_method,form_data);
     data.features.forEach(function(d) { d.population = populationById[d.id]; });
