@@ -323,7 +323,7 @@ $( document ).ready(function() {
   console.log(form_data);
 
   $.getJSON( "world_countries.json", function( data ) {
-    populationById = getSentimentData(post_url,request_method,form_data);
+    var populationById = getSentimentData(post_url,request_method,form_data);
     data.features.forEach(function(d) { d.population = populationById[d.id]; });
     mapData = data;
     drawMap(data,populationById);
@@ -332,6 +332,8 @@ $( document ).ready(function() {
 });
 
 function drawMap(data,populationById){
+  alert(data);
+  alert(populationById);
   svg.append("g")
       .attr("class", "countries")
     .selectAll("path")
@@ -389,7 +391,7 @@ function getSentimentData(post_url,request_method,form_data){
 		data : form_data
 	}).done(function(response){ 
     console.log(response);
-    population = response;
+    var population = response;
     population.forEach(function(d) { populationById[d.id] = +d.population; }); 
 	});
   return populationById;
