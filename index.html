@@ -311,10 +311,10 @@ var path = d3.geoPath().projection(projection);
 
 svg.call(tip);
 
-queue()
-    .defer(d3.json, "world_countries.json")
-    .defer(d3.json, "world_population.json")
-    .await(ready);
+//queue()
+//    .defer(d3.json, "world_countries.json")
+//    .defer(d3.json, "world_population.json")
+//    .await(ready);
 data = {}
 
 
@@ -380,9 +380,9 @@ $("#sentimentForm").submit(function(event){
     var populationById = {}
     population = response;
     population.forEach(function(d) { populationById[d.id] = +d.population; }); 
-    console.log(data)
+    console.log(mapData)
 		console.log(response);
-    drawMap(data,population);
+    drawMap(mapData,populationById);
 	});
   return false;
 });
