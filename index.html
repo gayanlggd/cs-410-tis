@@ -314,14 +314,14 @@ $( document ).ready(function() {
 
   svg.call(tip);
 
-  post_url = $("sentimentForm").attr("action");
-  request_method = $("sentimentForm").attr("method");
-  form_data = {};
+  var post_url = $("sentimentForm").attr("action");
+  var request_method = $("sentimentForm").attr("method");
+  var form_data = {};
 
   $.getJSON( "world_countries.json", function( data ) {
     populationById = getSentimentData(post_url,request_method,form_data);
     data.features.forEach(function(d) { d.population = populationById[d.id]; });
-    mapData = data;
+    var mapData = data;
     drawMap(data,populationById);
   });
 
@@ -376,12 +376,13 @@ $("#sentimentForm").submit(function(event){
 });
 
 function getSentimentData(post_url,request_method,form_data){
+  var populationById = {}
   $.ajax({
 		url : post_url,
 		type: request_method,
 		data : form_data
 	}).done(function(response){ 
-    var populationById = {}
+    
     population = response;
     population.forEach(function(d) { populationById[d.id] = +d.population; }); 
     console.log(mapData)
