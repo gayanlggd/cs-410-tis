@@ -311,12 +311,10 @@ var path = d3.geoPath().projection(projection);
 
 svg.call(tip);
 
-//queue()
-//    .defer(d3.json, "world_countries.json")
-//    .defer(d3.json, "world_population.json")
-//    .await(ready);
-data = {}
-
+queue()
+    .defer(d3.json, "world_countries.json")
+    .defer(d3.json, "world_population.json")
+    .await(ready);
 
 function ready(error, data, population) {
   var populationById = {};
