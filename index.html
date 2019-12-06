@@ -361,10 +361,10 @@ function ready(error, data, population) {
 
 $("#my_form").submit(function(event){
 	event.preventDefault();
-	var post_url = $(this).attr("action");
+	var get_url = $(this).attr("action");
 	var form_data = $(this).serialize();
 	
-	$.post( post_url, form_data, function( response ) {
+	$.get( get_url, form_data, function( response ) {
 	  console.log(response);
 	});
 });
