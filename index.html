@@ -388,7 +388,8 @@ function getSentimentData(post_url,request_method,form_data){
   $.ajax({
 		url : post_url,
 		type: request_method,
-		data : form_data
+		data : form_data,
+    async: false
 	}).done(function(response){ 
     console.log(response);
     var population = response;
