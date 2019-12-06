@@ -325,7 +325,7 @@ function ready(error, data, population) {
   drawMap(data,population)
 }
 
-function drawMap(){
+function drawMap(data,population){
   svg.append("g")
       .attr("class", "countries")
     .selectAll("path")
