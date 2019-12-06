@@ -277,9 +277,7 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script type="text/javascript">
 
-$( document ).ready(function() {
-
-  var format = d3.format(",");
+var format = d3.format(",");
 
   // Set tooltips
   var tip = d3.tip()
@@ -314,9 +312,14 @@ $( document ).ready(function() {
 
   svg.call(tip);
 
+$( document ).ready(function() {
+
   var post_url = $("sentimentForm").attr("action");
   var request_method = $("sentimentForm").attr("method");
   var form_data = {};
+  console.log(post_url);
+  console.log(request_method);
+  console.log(form_data);
 
   $.getJSON( "world_countries.json", function( data ) {
     populationById = getSentimentData(post_url,request_method,form_data);
@@ -382,7 +385,7 @@ function getSentimentData(post_url,request_method,form_data){
 		type: request_method,
 		data : form_data
 	}).done(function(response){ 
-    
+    console.log(response);
     population = response;
     population.forEach(function(d) { populationById[d.id] = +d.population; }); 
     console.log(mapData)
