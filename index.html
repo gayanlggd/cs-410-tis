@@ -311,6 +311,7 @@ var format = d3.format(",");
   var path = d3.geoPath().projection(projection);
 
   svg.call(tip);
+  var mapData = {}
 
 $( document ).ready(function() {
 
@@ -324,7 +325,7 @@ $( document ).ready(function() {
   $.getJSON( "world_countries.json", function( data ) {
     populationById = getSentimentData(post_url,request_method,form_data);
     data.features.forEach(function(d) { d.population = populationById[d.id]; });
-    var mapData = data;
+    mapData = data;
     drawMap(data,populationById);
   });
 
@@ -388,9 +389,6 @@ function getSentimentData(post_url,request_method,form_data){
     console.log(response);
     population = response;
     population.forEach(function(d) { populationById[d.id] = +d.population; }); 
-    console.log(mapData)
-		console.log(response);
-    //drawMap(mapData,populationById);
 	});
   return populationById;
 }
