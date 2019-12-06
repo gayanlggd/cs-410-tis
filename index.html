@@ -322,10 +322,10 @@ function ready(error, data, population) {
   population.forEach(function(d) { populationById[d.id] = +d.population; }); 
   data.features.forEach(function(d) { d.population = populationById[d.id]; });
 
-  drawMap(data,population)
+  drawMap(data,populationById)
 }
 
-function drawMap(data,population){
+function drawMap(data,populationById){
   svg.append("g")
       .attr("class", "countries")
     .selectAll("path")
