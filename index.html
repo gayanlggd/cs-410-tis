@@ -318,9 +318,6 @@ $( document ).ready(function() {
   var post_url = "https://www.mocky.io/v2/5dea24f030000058002b0585";
   var request_method = "get";
   var form_data = {};
-  console.log(post_url);
-  console.log(request_method);
-  console.log(form_data);
 
   $.getJSON( "world_countries.json", function( data ) {
     var populationById = getSentimentData(post_url,request_method,form_data);
@@ -378,8 +375,6 @@ $("#sentimentForm").submit(function(event){
 	var form_data = $(this).serialize(); 
 	
   populationById = getSentimentData(post_url,request_method,form_data);
-  console.log(mapData);
-  console.log("mapdata")
 	drawMap(mapData,populationById);
 });
 
@@ -391,7 +386,6 @@ function getSentimentData(post_url,request_method,form_data){
 		data : form_data,
     async: false
 	}).done(function(response){ 
-    console.log(response);
     var population = response;
     population.forEach(function(d) { populationById[d.id] = +d.population; }); 
 	});
