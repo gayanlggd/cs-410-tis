@@ -315,12 +315,15 @@ queue()
     .defer(d3.json, "world_countries.json")
     .defer(d3.json, "world_population.json")
     .await(ready);
+data = {}
+
 
 function ready(error, data, population) {
   var populationById = {};
 
   population.forEach(function(d) { populationById[d.id] = +d.population; }); 
   data.features.forEach(function(d) { d.population = populationById[d.id]; });
+  mapData = data;
 
   drawMap(data,populationById)
 }
@@ -373,7 +376,11 @@ $("#sentimentForm").submit(function(event){
 		url : post_url,
 		type: request_method,
 		data : form_data
-	}).done(function(response){ //
+	}).done(function(response){ 
+    var populationById = {}
+    population = response;
+    population.forEach(function(d) { populationById[d.id] = +d.population; }); 
+    drawMap(data,population)
 		console.log(response);
 	});
   return false;
