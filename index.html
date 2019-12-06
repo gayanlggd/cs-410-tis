@@ -376,6 +376,8 @@ $("#sentimentForm").submit(function(event){
 	var form_data = $(this).serialize(); 
 	
   populationById = getSentimentData(post_url,request_method,form_data);
+  console.log(mapData);
+  console.log("mapdata")
 	drawMap(mapData,populationById);
 });
 
