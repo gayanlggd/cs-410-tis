@@ -380,8 +380,9 @@ $("#sentimentForm").submit(function(event){
     var populationById = {}
     population = response;
     population.forEach(function(d) { populationById[d.id] = +d.population; }); 
-    drawMap(data,population)
+    console.log(data)
 		console.log(response);
+    drawMap(data,population);
 	});
   return false;
 });
